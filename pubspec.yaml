@@ -46,6 +46,8 @@ dependencies:
   dio: ^5.8.0+1
   # 환경 변수 관리
   flutter_dotenv: ^5.2.1
+  # Json Annotation
+  json_annotation: ^4.9.0
 
 dev_dependencies:
   flutter_test:
