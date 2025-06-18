@@ -1,5 +1,5 @@
 name: cleanarchitecture
-description: "A new Flutter project."
+description: 'A new Flutter project.'
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -34,6 +34,13 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
+  # 의존성 관리 서비스 로케이터
+  get_it: ^8.0.3
+  # 상태관리
+  flutter_bloc: ^9.1.1
+  # 클린 아키텍처를 적용하면서 성공과 실패를 구분해 처리하고 싶을 때 유용
+  dartz: ^0.10.1
+  freezed_annotation: ^3.0.0
 
 dev_dependencies:
   flutter_test:
@@ -45,13 +52,15 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^5.0.0
+  json_serializable: ^6.9.5
+  freezed: ^3.0.6
+  build_runner: ^2.4.15
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter packages.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
