@@ -60,6 +60,8 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^5.0.0
   json_serializable: ^6.9.5
+  # 모델 자동 생성 명령어
+  # flutter pub run build_runner build --delete-conflicting-outputs
   build_runner: ^2.4.15
 
 # For information on the generic Dart part of this file, see the
