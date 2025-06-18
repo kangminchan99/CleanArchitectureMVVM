@@ -1,5 +1,6 @@
 import 'package:cleanarchitecture/src/core/utils/constant/config.dart';
 
+// API 경로
 String apiUrl = '${Config.articleApiUrl}/mostviewed/';
 String apiKey = Config.articleApiKey;
 
