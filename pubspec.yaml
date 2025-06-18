@@ -41,6 +41,8 @@ dependencies:
   # 클린 아키텍처를 적용하면서 성공과 실패를 구분해 처리하고 싶을 때 유용
   dartz: ^0.10.1
   freezed_annotation: ^3.0.0
+  # 객체 비교
+  equatable: ^2.0.7
 
 dev_dependencies:
   flutter_test:
