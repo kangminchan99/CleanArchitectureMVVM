@@ -1,3 +1,4 @@
+import 'package:cleanarchitecture/src/features/articles/domain/media_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'article_model.g.dart';
@@ -25,7 +26,7 @@ class ArticleModel {
   List<String>? orgFacet;
   List<String>? perFacet;
   List<String>? geoFacet;
-  List<MediaModle?> media;
+  List<MediaModel?> media;
   int? etaId;
 
   ArticleModel({
