@@ -1,4 +1,4 @@
-import 'package:cleanarchitecture/src/features/articles/domain/media_model.dart';
+import 'package:cleanarchitecture/src/features/articles/domain/models/media_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'article_model.g.dart';
