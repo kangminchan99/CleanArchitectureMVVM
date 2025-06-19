@@ -38,8 +38,8 @@ class Helper {
     return {}..removeWhere((key, value) => value == null);
   }
 
-  // check if dark mode is enabled
-  static bool isDarkMode() {
+  // check if dark theme is enabled
+  static bool isDarkTheme() {
     return sl<AppSharedPrefs>().getIsDarkTheme();
   }
 }
