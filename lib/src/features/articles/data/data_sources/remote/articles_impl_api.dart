@@ -2,9 +2,9 @@ import 'package:cleanarchitecture/src/core/network/error/dio_error_handler.dart'
 import 'package:cleanarchitecture/src/core/network/error/exceptions.dart';
 import 'package:cleanarchitecture/src/core/utils/constant/network_constant.dart';
 import 'package:cleanarchitecture/src/features/articles/data/data_sources/remote/abstract_article_api.dart';
-import 'package:cleanarchitecture/src/features/articles/domain/article_model.dart';
-import 'package:cleanarchitecture/src/features/articles/domain/article_response_model.dart';
-import 'package:cleanarchitecture/src/features/articles/domain/articles_params.dart';
+import 'package:cleanarchitecture/src/features/articles/domain/models/article_model.dart';
+import 'package:cleanarchitecture/src/features/articles/domain/models/article_response_model.dart';
+import 'package:cleanarchitecture/src/features/articles/domain/models/articles_params.dart';
 import 'package:dio/dio.dart';
 
 // 추상 클래스를 실제로 구현하여, API에서 데이터를 가져오는 로직

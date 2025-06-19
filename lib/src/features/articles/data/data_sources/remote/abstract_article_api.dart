@@ -1,6 +1,6 @@
-import 'package:cleanarchitecture/src/features/articles/domain/article_model.dart';
-import 'package:cleanarchitecture/src/features/articles/domain/article_response_model.dart';
-import 'package:cleanarchitecture/src/features/articles/domain/articles_params.dart';
+import 'package:cleanarchitecture/src/features/articles/domain/models/article_model.dart';
+import 'package:cleanarchitecture/src/features/articles/domain/models/article_response_model.dart';
+import 'package:cleanarchitecture/src/features/articles/domain/models/articles_params.dart';
 
 // 추상 API 응답 클래스
 abstract class AbstractArticleApi {
