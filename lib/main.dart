@@ -1,117 +1,142 @@
+import 'package:cleanarchitecture/src/core/helper/helper.dart';
+import 'package:cleanarchitecture/src/core/router/router.dart';
+import 'package:cleanarchitecture/src/core/styles/app_theme.dart';
+import 'package:cleanarchitecture/src/core/translations/l10n.dart';
+import 'package:cleanarchitecture/src/core/utils/injections.dart';
+import 'package:cleanarchitecture/src/features/intro/presentation/pages/intro_page.dart';
+import 'package:cleanarchitecture/src/shared/data/data_sources/app_shared_prefs.dart';
+import 'package:cleanarchitecture/src/shared/domain/entities/language_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
+import 'package:device_preview/device_preview.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: '.env');
-  runApp(const MyApp());
+  await initInjections();
+
+  runApp(
+    DevicePreview(
+      builder: (context) {
+        return const MyApp();
+      },
+      enabled: false,
+    ),
+  );
 
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'CleanArchitecture MVVM',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
+  State<MyApp> createState() => _MyAppState();
+
+  static void setLocale(BuildContext context, LanguageEnum newLocale) {
+    _MyAppState state = context.findAncestorStateOfType()!;
+    state.updateLocale(newLocale);
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
+  Locale locale = const Locale('en');
+  final GlobalKey<ScaffoldMessengerState> snackBarKey =
+      GlobalKey<ScaffoldMessengerState>();
 
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
+  void updateLocale(LanguageEnum newLocale) {
     setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
+      locale = Locale(newLocale.name);
     });
+    sl<AppSharedPrefs>().setLang(newLocale);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addObserver(this);
+
+    if (mounted) {
+      LanguageEnum newLocale = Helper.getLang();
+      setState(() {
+        locale = Locale(newLocale.local);
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+    return ChangeNotifierProvider(
+      create: (_) => AppNotifier(),
+      child: Consumer<AppNotifier>(
+        builder: (context, value, child) {
+          return ScreenUtilInit(
+            designSize: const Size(360, 690),
+            minTextAdapt: true,
+            splitScreenMode: true,
+            builder: (context, child) {
+              return MaterialApp(
+                title: 'CleanArchitecture MVVM',
+                scaffoldMessengerKey: snackBarKey,
+                onGenerateRoute: AppRouter.generateRoute,
+                debugShowCheckedModeBanner: false,
+                locale: locale,
+                builder: DevicePreview.appBuilder,
+                theme: Helper.isDarkTheme() ? darkAppTheme : appTheme,
+                localizationsDelegates: [
+                  S.delegate,
+
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate,
+                  GlobalCupertinoLocalizations.delegate,
+                ],
+                navigatorKey: navigatorKey,
+                supportedLocales: const [Locale("ar"), Locale("en")],
+                home: const IntroPage(),
+              );
+            },
+          );
+        },
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text('You have pushed the button this many times:'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
+  }
+}
+
+// App notifier for Lang, Theme, ...
+class AppNotifier extends ChangeNotifier {
+  late bool darkTheme;
+
+  AppNotifier() {
+    _initialise();
+  }
+
+  Future _initialise() async {
+    darkTheme = Helper.isDarkTheme();
+
+    notifyListeners();
+  }
+
+  void updateThemeTitle(bool newDarkTheme) {
+    darkTheme = newDarkTheme;
+    if (Helper.isDarkTheme()) {
+      SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
+    } else {
+      SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
+    }
+    notifyListeners();
   }
 }
