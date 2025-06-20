@@ -26,7 +26,7 @@ class ArticleModel {
   List<String>? orgFacet;
   List<String>? perFacet;
   List<String>? geoFacet;
-  List<MediaModel?> media;
+  List<MediaModel>? media;
   int? etaId;
 
   ArticleModel({
