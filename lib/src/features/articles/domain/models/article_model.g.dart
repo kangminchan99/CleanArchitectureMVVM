@@ -35,11 +35,8 @@ ArticleModel _$ArticleModelFromJson(Map<String, dynamic> json) => ArticleModel(
   geoFacet: (json['geo_facet'] as List<dynamic>?)
       ?.map((e) => e as String)
       .toList(),
-  media: (json['media'] as List<dynamic>)
-      .map(
-        (e) =>
-            e == null ? null : MediaModel.fromJson(e as Map<String, dynamic>),
-      )
+  media: (json['media'] as List<dynamic>?)
+      ?.map((e) => MediaModel.fromJson(e as Map<String, dynamic>))
       .toList(),
   etaId: (json['eta_id'] as num?)?.toInt(),
 );
