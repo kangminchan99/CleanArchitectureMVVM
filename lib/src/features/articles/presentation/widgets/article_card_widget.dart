@@ -31,11 +31,12 @@ class _ArticleCardWidgetState extends State<ArticleCardWidget> {
     // Check if somethings happened and do not return media
     // If everything seems to be in order we will display the image
     // else display solid circle instead
-    if (widget.nyTimesModel.media.isNotEmpty) {
-      if (widget.nyTimesModel.media.first!.mediaMetadata != null &&
-          widget.nyTimesModel.media.first!.mediaMetadata!.isNotEmpty) {
+    if (widget.nyTimesModel.media != null &&
+        widget.nyTimesModel.media!.isNotEmpty) {
+      if (widget.nyTimesModel.media!.first.mediaMetadata != null &&
+          widget.nyTimesModel.media!.first.mediaMetadata!.isNotEmpty) {
         smallImageUrl =
-            widget.nyTimesModel.media.first!.mediaMetadata!.first.url;
+            widget.nyTimesModel.media!.first.mediaMetadata!.first.url;
       }
     }
 
@@ -43,10 +44,11 @@ class _ArticleCardWidgetState extends State<ArticleCardWidget> {
     // Check if somethings happened and do not return media
     // If everything seems to be in order we will display the image
     // else display solid circle instead
-    if (widget.nyTimesModel.media.isNotEmpty) {
-      if (widget.nyTimesModel.media.last!.mediaMetadata != null &&
-          widget.nyTimesModel.media.last!.mediaMetadata!.isNotEmpty) {
-        bigImageUrl = widget.nyTimesModel.media.last!.mediaMetadata!.last.url;
+    if (widget.nyTimesModel.media != null &&
+        widget.nyTimesModel.media!.isNotEmpty) {
+      if (widget.nyTimesModel.media!.last.mediaMetadata != null &&
+          widget.nyTimesModel.media!.last.mediaMetadata!.isNotEmpty) {
+        bigImageUrl = widget.nyTimesModel.media!.last.mediaMetadata!.last.url;
       }
     }
     return Padding(
