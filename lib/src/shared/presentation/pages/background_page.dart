@@ -1,3 +1,5 @@
+import 'package:cleanarchitecture/src/core/helper/helper.dart';
+import 'package:cleanarchitecture/src/core/styles/app_colors.dart';
 import 'package:cleanarchitecture/src/shared/presentation/pages/app_drawer_page.dart';
 import 'package:flutter/material.dart';
 
@@ -39,6 +41,7 @@ class _BackgroundPageState extends State<BackgroundPage> {
     return Scaffold(
       appBar: widget.appBar,
       key: widget.scaffoldKey,
+
       backgroundColor:
           widget.backgroundColor ?? Theme.of(context).scaffoldBackgroundColor,
       resizeToAvoidBottomInset: false,
@@ -53,7 +56,9 @@ class _BackgroundPageState extends State<BackgroundPage> {
       },
       drawer: widget.withDrawer
           ? Drawer(
-              backgroundColor: Theme.of(context).drawerTheme.backgroundColor,
+              backgroundColor: Helper.isDarkTheme()
+                  ? AppColors.darkGray
+                  : Theme.of(context).drawerTheme.backgroundColor,
               child: AppDrawerPage(),
             )
           : null,

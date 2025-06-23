@@ -38,7 +38,9 @@ class _AppDrawerPageState extends State<AppDrawerPage> {
           SizedBox(height: kToolbarHeight),
           Text(
             S.of(context).language,
-            style: Theme.of(context).textTheme.headlineMedium,
+            style: Theme.of(
+              context,
+            ).textTheme.headlineMedium!.copyWith(color: Colors.black),
           ),
 
           // Arabic language
@@ -50,13 +52,16 @@ class _AppDrawerPageState extends State<AppDrawerPage> {
               value: LanguageEnum.values[0],
               activeColor: selectedLanguage != LanguageEnum.ar
                   ? Theme.of(context).iconTheme.color
-                  : Theme.of(context).cardColor,
+                  : Helper.isDarkTheme()
+                  ? Colors.white
+                  : Colors.blue,
               contentPadding: EdgeInsets.zero,
               title: Text(
                 S.of(context).arabic,
-                style: Theme.of(
-                  context,
-                ).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold),
+                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
               ),
               groupValue: selectedLanguage,
               onChanged: (value) {
@@ -77,13 +82,16 @@ class _AppDrawerPageState extends State<AppDrawerPage> {
               value: LanguageEnum.values[1],
               activeColor: selectedLanguage != LanguageEnum.en
                   ? Theme.of(context).iconTheme.color
-                  : Theme.of(context).cardColor,
+                  : Helper.isDarkTheme()
+                  ? Colors.white
+                  : Colors.blue,
               contentPadding: EdgeInsets.zero,
               title: Text(
                 S.of(context).english,
-                style: Theme.of(
-                  context,
-                ).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold),
+                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
               ),
               groupValue: selectedLanguage,
               onChanged: (value) {
@@ -102,10 +110,13 @@ class _AppDrawerPageState extends State<AppDrawerPage> {
                 Helper.isDarkTheme()
                     ? S.of(context).dark_skin
                     : S.of(context).light_skin,
-                style: Theme.of(context).textTheme.headlineMedium,
+                style: Theme.of(
+                  context,
+                ).textTheme.headlineMedium!.copyWith(color: Colors.black),
               ),
               Switch(
-                activeColor: Theme.of(context).cardColor,
+                activeColor: Colors.black,
+                inactiveTrackColor: Colors.grey,
                 value: Helper.isDarkTheme(),
                 onChanged: (value) {
                   if (value) {
