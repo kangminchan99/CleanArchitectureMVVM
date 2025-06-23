@@ -8,9 +8,9 @@ extension AppRouteExtenson on AppRouteEnum {
       case AppRouteEnum.articleDetailPage:
         return '/article_details_page';
       case AppRouteEnum.weViewPage:
-        return '/weView_page';
+        return '/web_view_page';
       case AppRouteEnum.photoViewPage:
-        return '/photoView_page';
+        return '/photo_view_page';
     }
   }
 }
