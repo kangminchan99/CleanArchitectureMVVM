@@ -16,6 +16,7 @@ class _IntroPageState extends State<IntroPage> {
   void initState() {
     Future.delayed(Duration(seconds: 1), () {
       if (!mounted) return;
+      // 이전 모든 경로 스택 제거
       Navigator.pushNamedAndRemoveUntil(
         context,
         AppRouteEnum.articlesPage.name,

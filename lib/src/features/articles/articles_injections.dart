@@ -8,6 +8,7 @@ import 'package:cleanarchitecture/src/features/articles/domain/usecases/articles
 
 initArticlesInjections() {
   // Article 관련 의존성 주입 설정
+  // registerSingleton - 지금 바로 생성해서 컨테이너에 고정 보관
   sl.registerSingleton<ArticlesImplApi>(ArticlesImplApi(DioNetwork.appAPI));
   sl.registerSingleton<AbstractArticlesRepository>(
     ArticlesRepositoryImpl(sl()),
