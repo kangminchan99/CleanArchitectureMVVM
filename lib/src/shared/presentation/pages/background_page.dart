@@ -1,3 +1,4 @@
+import 'package:cleanarchitecture/src/shared/presentation/pages/app_drawer_page.dart';
 import 'package:flutter/material.dart';
 
 class BackgroundPage extends StatefulWidget {
@@ -53,6 +54,7 @@ class _BackgroundPageState extends State<BackgroundPage> {
       drawer: widget.withDrawer
           ? Drawer(
               backgroundColor: Theme.of(context).drawerTheme.backgroundColor,
+              child: AppDrawerPage(),
             )
           : null,
 
