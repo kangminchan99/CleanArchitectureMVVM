@@ -163,7 +163,7 @@ class _NyTimesArticlesPageState extends State<ArticleDetailsPage> {
                               gradient: LinearGradient(
                                 colors: [
                                   Colors.transparent,
-                                  AppColors.primaryColor.withOpacity(0.7),
+                                  AppColors.primaryColor.withValues(alpha: 0.7),
                                 ],
                                 begin: Alignment.topCenter,
                                 end: Alignment.bottomCenter,
