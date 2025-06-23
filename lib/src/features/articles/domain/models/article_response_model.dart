@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 
 // <T> - Generic type (어떤 타입이든 외부에서 정해서 쓸 수 있다.)
 class ApiResponse<T> {
+  // 응답 데이터 캡슐화하기 위한 모델 클래스
   ApiResponse({
     required this.status,
     required this.copyright,
@@ -19,6 +20,8 @@ class ApiResponse<T> {
       status: json['status'],
       copyright: json['copyright'],
       numResults: json['num_results'],
+      // tFromJson 함수 results 필드의 데이터를 반환하는 함수로
+      // 예를 들어 ArticleModel로 변환할 수 있다.
       results: tFromJson(json['results']),
     );
   }
@@ -26,6 +29,7 @@ class ApiResponse<T> {
   @override
   int get hashCode => Object.hash(status, copyright, numResults, results);
 
+  // 데이터가 같으면 같은 객체로 간주
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {

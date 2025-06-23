@@ -6,6 +6,7 @@ import 'package:cleanarchitecture/src/features/articles/domain/models/articles_p
 import 'package:cleanarchitecture/src/features/articles/domain/repositories/abstract_articles_repository.dart';
 import 'package:dartz/dartz.dart';
 
+// repository를 참조하여 실제로 기사 데이터를 가져오는 구현체 (데이터 레이어와 도메인 레이어 연결 부분)
 class ArticlesRepositoryImpl extends AbstractArticlesRepository {
   final ArticlesImplApi articlesApi;
 

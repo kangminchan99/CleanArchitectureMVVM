@@ -8,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart'; // Importing Bloc for state man
 part 'articles_event.dart'; // Part file for events
 part 'articles_state.dart'; // Part file for states
 
+// BLoC이 사용자 행동을 포착하도록 설정되었고, 이는 기사 관련 유스케이스를 호출하며, 유스케이스는 데이터를 가져오기 위해 리포지토리 계층과 통신
 class ArticlesBloc extends Bloc<ArticlesEvent, ArticlesState> {
   final ArticlesUsecase articlesUseCase; // 의존성 주입을 위한 유스케이스
 
