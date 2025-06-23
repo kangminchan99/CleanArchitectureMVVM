@@ -7,13 +7,20 @@ import 'package:cleanarchitecture/src/core/utils/log/app_logger.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 
+// 네트워크 요청을 처리하기 위한 Dio 인스턴스를 관리
 class DioNetwork {
   static late Dio appAPI;
   static late Dio retryAPI;
 
   static void initDio() {
     appAPI = Dio(baseOptions(apiUrl));
+    // 요청 및 응답 로깅
     appAPI.interceptors.add(loggerInterceptor());
+    // appApI에 대한 큐 인터셉터
+    appAPI.interceptors.add(appQueuedInterceptorsWrapper());
+
+    retryAPI = Dio(baseOptions(apiUrl));
+    retryAPI.interceptors.add(loggerInterceptor());
     retryAPI.interceptors.add(interceptorsWrapper());
   }
 

@@ -6,7 +6,7 @@ extension AppRouteExtenson on AppRouteEnum {
       case AppRouteEnum.articlesPage:
         return '/articles_page';
       case AppRouteEnum.articleDetailPage:
-        return '/articleDetail_page';
+        return '/article_details_page';
       case AppRouteEnum.weViewPage:
         return '/weView_page';
       case AppRouteEnum.photoViewPage:

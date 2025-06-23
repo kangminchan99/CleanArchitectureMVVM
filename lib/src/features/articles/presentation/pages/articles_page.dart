@@ -97,6 +97,7 @@ class _ArticlesPageState extends State<ArticlesPage> {
               constraints: BoxConstraints(),
               onPressed: () {
                 FocusManager.instance.primaryFocus?.unfocus();
+                _key.currentState!.openDrawer();
               },
               icon: Icon(Icons.menu, size: 20),
             ),
