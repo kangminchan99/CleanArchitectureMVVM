@@ -3,6 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'article_model.g.dart';
 
+// 카멜 케이스를 스네이크 케이스로 변환하는 설정 ex) publishedDate -> published_date
 @JsonSerializable(fieldRename: FieldRename.snake)
 class ArticleModel {
   String? uri;
