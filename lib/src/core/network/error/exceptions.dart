@@ -1,3 +1,4 @@
+// 초기 고정 세팅 값
 // 서버 오류가 발생했을 때 발생하는 예외 처리
 class ServerException implements Exception {
   final String message;

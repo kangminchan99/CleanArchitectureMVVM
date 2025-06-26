@@ -1,3 +1,4 @@
+// 초기 고정 세팅 값
 import 'package:flutter/material.dart';
 
 class AppColors {

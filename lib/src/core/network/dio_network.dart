@@ -1,3 +1,4 @@
+// 초기 고정 세팅 값
 import 'dart:convert';
 
 import 'package:cleanarchitecture/src/core/helper/helper.dart';

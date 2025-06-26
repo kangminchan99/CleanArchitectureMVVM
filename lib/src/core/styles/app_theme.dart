@@ -1,3 +1,4 @@
+// 초기 고정 세팅 값
 import 'package:cleanarchitecture/src/core/styles/app_text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

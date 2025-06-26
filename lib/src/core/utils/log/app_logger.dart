@@ -1,3 +1,4 @@
+// 초기 고정 세팅 값
 import 'dart:developer' as developer;
 
 import 'package:flutter/foundation.dart';

@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 
+// 초기 고정 세팅 값
 abstract class Failure extends Equatable {
   final String errorMessage;
 

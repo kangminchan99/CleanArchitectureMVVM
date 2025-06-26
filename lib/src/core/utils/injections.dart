@@ -1,3 +1,4 @@
+// 초기 고정 세팅 값
 import 'package:cleanarchitecture/src/core/network/dio_network.dart';
 import 'package:cleanarchitecture/src/core/utils/log/app_logger.dart';
 import 'package:cleanarchitecture/src/features/articles/articles_injections.dart';

@@ -4,6 +4,7 @@ import 'package:cleanarchitecture/src/shared/data/data_sources/app_shared_prefs.
 import 'package:cleanarchitecture/src/shared/domain/entities/language_enum.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+// 초기 고정 세팅 값
 class Helper {
   // get language
   static LanguageEnum getLang() {

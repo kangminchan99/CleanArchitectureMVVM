@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 
+// 초기 고정 세팅 값
 String handleDioError(DioException error) {
   String errorDescription = "";
 

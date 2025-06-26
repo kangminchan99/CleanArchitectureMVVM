@@ -1,3 +1,4 @@
+// 초기 고정 세팅 값
 abstract class AppFontSize {
   static const double xxSmall = 8.0;
   static const double xSmall = 10.0;
