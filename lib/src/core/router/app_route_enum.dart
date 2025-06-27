@@ -1,7 +1,7 @@
 // 초기 고정 세팅 값
 enum AppRouteEnum { articlesPage, articleDetailPage, weViewPage, photoViewPage }
 
-extension AppRouteExtenson on AppRouteEnum {
+extension AppRouteExtension on AppRouteEnum {
   String get name {
     switch (this) {
       case AppRouteEnum.articlesPage:
